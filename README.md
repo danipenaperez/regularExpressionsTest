@@ -44,68 +44,51 @@ Por lo tanto el procesamiento es orientado a eventos.
 
 
 
-Empezamos de las mas sencillas para arriba :
+### Empezamos de las mas sencillas para arriba :
 
 
 Usamos los parentesis para meter dentro nuetras expressiones regulares. Te encuenta que una expresion regular compleja puede estar compuesta por varias subexpresiones dentro de parentesis.
 
 
-(\\d)   output ->  [1, 2, 3]
-
+### (\\d)   output ->  [1, 2, 3]
 Esta expresion saca uno por uno todos los digitos
-
 Evalua caracter a caracter y si es un digito salta el find() y nos devuelve un grupo que contiene ese digito. Por lo tanto tenemos en la lista final de ocurrencias 3 entradas, con los numeros 1,2,3.
 
 
-(\\d+) output -> [123]
-
+### (\\d+) output -> [123]
 Esta expresion es igual va a ir caracter a caracter y si es un numero lo guarda como macheo, pero al tener un "+" le indicamos que si depues de ese digito hay mas digitos que los guarde todos en el mismo grupo, por eso encuentra el 1 y mira el caracter que hay despues , si es otro numero, lo junta con el anterior (12), sigue mirando y encuentra el 3 que tambien machea asi que ya tiene un grupo con 123, como el siguiente caracter es un @ pues da por cerrado el grupo ya que no hay mas coincidencias, entonces la llamada a m.group() devuelve "123".  ¿a que explicado asi es mas sencillo?
 
- 
 
- 
-
-(\\w) output -> [a, b, c, d, e, p, a, c, o, 1, 2, 3, g, m, a, i, l, c, o, m, A, A, b, d]
-
+### (\\w) output -> [a, b, c, d, e, p, a, c, o, 1, 2, 3, g, m, a, i, l, c, o, m, A, A, b, d]
 Esta es igual que la de los digitos, pero con caracteres alfanumericos y underscore. Como no tiene + va a ir sacando caracter a caracter. Si te fijas ha excluido los espacios y lo simbolos "raros" ~% .
 
 
-(\\w+) output-> [abcde, paco123, gmail, comAAbd]
-
+### (\\w+) output-> [abcde, paco123, gmail, comAAbd]
 Prima hermana de la anterior, pero como lleva el +,cuando encuentra una coincidencia comienza a almacenar en el grupo, y mete en el mismo grupo hasta que no se cumple la condicion. "abcde" se para porque encuentra un espacio asi que no añade mas a a ese grupo y lo devuelve. sigue mirando y lo siguiente es "p" y sigue almacenando "paco123" porque cumple el patron y cuando llega a la @ lo da por cerrado porque no machea.
-
-
  
 
-([a-z]) output-> [a, b, c, d, e, p, a, c, o, g, m, a, i, l, c, o, m, b, d]
-
+### ([a-z]) output-> [a, b, c, d, e, p, a, c, o, g, m, a, i, l, c, o, m, b, d]
 Esta especifica un rango de valores, case sensitive. Por eso hace grupos individuales (no tiene el +) con cada caracter que encuentra dentro del rango de las minusculas. si quieres haz la prueba con ([a-m]) y asi veras que excluye las letras posteriores a la m. Mola!, ya puedes ir jugando con algo.
  
 
-([a-z]+) output-> [abcde, paco, gmail, com, bd]
-
+### ([a-z]+) output-> [abcde, paco, gmail, com, bd]
 Esta es la misma que antes, pero agrupa mientras se cumpla el patron.
  
 
- 
-
-([a-zA-Z]+) output-> [abcde, paco, gmail, comAAbd]
-
+### ([a-zA-Z]+) output-> [abcde, paco, gmail, comAAbd]
 Esta indica varios grupos de coincidencias, o de la a-z o de la A-Z y ademas me los agrupas si estan seguidos. ¿a que parecia compleja y no era para tanto?
  
 
-
-(paco|pedro|com |gmail) output-> [paco, gmail]
-
+### (paco|pedro|com |gmail) output-> [paco, gmail]
 Esta especifica un or de un grupò de valores. si es alguno de esos, pues hace un grupo.
 
 
-(\\d+{3}) output-> [123]
-
+### (\\d+{3}) output-> [123]
 Esta es un poco mas especial, dice que saque los digitos y que los agrupe, pero que los grupos no los haga mas grandes de 3 caracteres. En el ejemplo encuentra el 123 despues de "paco". si la cadena donde busca fuera "paco4567jose12", lo que nos devolveria solo "456" porque son digitos y los agrupa de 3 en 3, ya que luego esta "jose" que no le vale y por ultimo encuentra "12" pero que como no llega a ser un grupo de 3, pues lo descarta.
 
 
- VAMOS A ANIDARLAS
+
+### VAMOS A ANIDARLAS
 
  
 
