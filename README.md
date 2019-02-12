@@ -92,63 +92,43 @@ Esta es un poco mas especial, dice que saque los digitos y que los agrupe, pero 
 
  
 
-(paco)(\\d) output-> [paco1]
- Esta evalua la primera expresion que encuentra entre parentesis, asi que busca a piñon fijo coincidencias con "paco" y si lo encuentra evalua si despues hay un digito (\\d).  En caso de que se cumplan las 2 expresiones nos devuelve un grupo que conteine "paco1".
+### (paco)(\\d) output-> [paco1]
+Esta evalua la primera expresion que encuentra entre parentesis, asi que busca a piñon fijo coincidencias con "paco" y si lo encuentra evalua si despues hay un digito (\\d).  En caso de que se cumplan las 2 expresiones nos devuelve un grupo que conteine "paco1".
 
- 
 
-(paco)(\\d+) -> [paco123]
-
+### (paco)(\\d+) -> [paco123]
 Prima hermana de la anterior, pero si te fijas al poner el + en la expresion de los digitos, pues sigue pillando digitos hasta que no se cumpla y nos devuelve todo el chorizo junto "paco123".   "Coño, pues tiene sentido, mola".
  
 
-(paco)^(\\d) output -> []
-
+### (paco)^(\\d) output -> []
 Esta mola porque usa la negacion "^". Vemos que busca que tenga "paco" y que despues NO contenga un digito, por eso no devuelve ninguna coincidencia, porque despues de "paco" hay un "1". y entonces lo descarta todo.
 
 
-([a-zA-Z0-9]+) output -> [abcde, paco123, gmail, comAAbd] 
-
+### ([a-zA-Z0-9]+) output -> [abcde, paco123, gmail, comAAbd] 
 Esta busca que el caracter este entre los margenes a-z o A-Z o 0-9, y si hay varias coincidencias seguidas, que las agrupe y me las devuelva como si fuera un "todo".
-
  
 
-([a-zA-Z]+)(\\d+) output -> [paco123]
-
+### ([a-zA-Z]+)(\\d+) output -> [paco123]
 Lo mismo, pero despues de agrupar tiene que mirar si hay digitos y si hay varios digitos seguidos que lo agrupe todo.
 
 
-([a-zA-Z]+)(\\d+)@ output -> [paco123@]
-
+### ([a-zA-Z]+)(\\d+)@ output -> [paco123@]
 Lo mismo que la anterior pero ademas que despues aparezca un @.  Si te fijas , esta expresion lleva ya 3 condiciones (la de las letras, la de los numeros y que justo despues exista un arroba. 
 
-
- 
-
-([a-zA-Z]+)(\\d+)@([a-z]+) output -> [paco123@gmail]
-
+### ([a-zA-Z]+)(\\d+)@([a-z]+) output -> [paco123@gmail]
 Lo mismo, pero que ademas, despue del arroba haya una (o varias) minusculas.
 
 
-([a-zA-Z]+)(\\d+)@([a-z]+). output -> [paco123@gmail.]
+### ([a-zA-Z]+)(\\d+)@([a-z]+). output -> [paco123@gmail.]
 Lo mismo que la anterior y que despues de las minusculas haya un punto "."
 
- 
-
-([a-zA-Z]+)(\\d+)@([a-z]+).([a-z]{3}) output -> [paco123@gmail.com]
-
+### ([a-zA-Z]+)(\\d+)@([a-z]+).([a-z]{3}) output -> [paco123@gmail.com]
 Lo mismo pero que despues del punto haya minusculas y que coga solo 3.
 
- 
 
-PERO.... SI ACABAMOS DE HACER UNA EXPRESION REGULAR QUE BUSCA EMAILS VALIDOS EN UN CHORIZO DE TEXTO!!!   Y CASI SIN DESPEINARNOS!!  
+### PERO.... SI ACABAMOS DE HACER UNA EXPRESION REGULAR QUE BUSCA EMAILS VALIDOS EN UN CHORIZO DE TEXTO!!!   Y CASI SIN DESPEINARNOS!!  
 
 
 Espero que te haya servido este articulo para entender un poco como funciona y perderle el miedo a las expresiones regulares.
 
 
-Puedes encontrar estos ejemplos funcionando en mi github:
-
- 
-
- RegularExpressionsJavaTest
